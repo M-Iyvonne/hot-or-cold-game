@@ -1,20 +1,20 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import './info-modal.css';
+import {toggleInfoModal} from '../action';
 
-export default class InfoModal extends React.Component {
-    onClose(event) {
+export class InfoModal extends React.Component {
+    hide(event) {
         event.preventDefault();
-        if (this.props.onClose) {
-            this.props.onClose();
-        }
+        this.props.dispatch(toggleInfoModal());
     }
 
     render() {
         return (
             <div className="overlay" id="modal">
                 <div className="content">
-                    <h3>What do I do?</h3>
+                    <h3>What is the name of the game?</h3>
                     <div>
                         <p>This is a Hot or Cold Number Guessing Game. The game goes like this: </p>
                         <ul>
@@ -30,3 +30,5 @@ export default class InfoModal extends React.Component {
         );
     }
 }
+
+export default connect()(InfoModal);
